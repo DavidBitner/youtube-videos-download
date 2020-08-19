@@ -2,7 +2,7 @@ import pytube
 
 
 def choose_directory():
-    directory = directory = input('Input the directory were the videos are going to: ')
+    directory = input('Input the directory were the videos are going to: ')
     return directory
 
 
@@ -16,3 +16,8 @@ def download(directory='C:/Users/David/Desktop/Videos'):
         video = youtube.streams.get_highest_resolution()
         video.download(directory)
         print('Download finished')
+
+
+# main
+download()
+print('Goodbye')
