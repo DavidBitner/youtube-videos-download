@@ -19,5 +19,6 @@ def download(directory='C:/Users/David/Desktop/Videos'):
 
 
 # main
-download()
+d = choose_directory()
+download(d)
 print('Goodbye')
