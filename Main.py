@@ -1,12 +1,16 @@
 import pytube
+import tkinter as tk
+from tkinter import filedialog
 
 
 def choose_directory():
-    directory = input('Input the directory were the videos are going to: ')
+    root = tk.Tk()
+    root.withdraw()
+    directory = filedialog.askdirectory(initialdir="C://Users//David//Desktop", title="Escolha onde salvar")
     return directory
 
 
-def download(directory='C:/Users/David/Desktop/Videos'):
+def download(directory):
     while True:
         video_url = input('Youtube URL: [0 to end] ')
         if video_url == '0':
