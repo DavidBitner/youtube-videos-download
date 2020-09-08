@@ -5,15 +5,16 @@ import pytube
 import pyperclip
 
 
+# Function to select the folder in which the videos will be saved
 def select_folder():
     global directory_label
     directory = filedialog.askdirectory(title="Escolha onde salvar")
     directory_label.destroy()
     directory_label = Label(frame, text=directory)
     directory_label.grid(row=0, column=0)
-    return directory
 
 
+# Function to allow the paste button to work
 def paste():
     global video_link_entry
     video_link_entry = Entry(frame, font="Helvetica 10")
@@ -21,6 +22,7 @@ def paste():
     video_link_entry.insert(0, pyperclip.paste())
 
 
+# Function to download videos
 def download():
     global status_label
     video_url = video_link_entry.get()
@@ -35,8 +37,8 @@ def download():
     status_label.destroy()
     status_label = Label(frame, text=f"FINISHED: {youtube.title}")
     status_label.grid(row=3, column=0, columnspan=2, pady=20, padx=10)
-    doidera = Label(frame2, text=youtube.title)
-    doidera.pack()
+    downloaded_video_label = Label(frame2, text=youtube.title)
+    downloaded_video_label.pack()
 
 
 # Main
