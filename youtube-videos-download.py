@@ -24,19 +24,30 @@ def paste():
 
 # Function to download videos
 def download():
+    from PIL import ImageTk, Image
+    import os
+    import requests
+    from io import BytesIO
+    global img
     global status_label
-    video_url = video_link_entry.get()
     status_label.destroy()
+    video_url = video_link_entry.get()
     youtube = pytube.YouTube(video_url)
-    status_label = Label(frame, text=f"Downloading:  {youtube.title}")
-    status_label.grid(row=3, column=0, columnspan=2, pady=20, padx=10)
     video = youtube.streams.get_highest_resolution()
     directory = directory_label.cget("text")
-    video.download(directory)
-    youtube = pytube.YouTube(video_url)
-    status_label.destroy()
+    # video.download(directory)
     status_label = Label(frame, text=f"FINISHED: {youtube.title}")
     status_label.grid(row=3, column=0, columnspan=2, pady=20, padx=10)
+
+    # Thumbnail
+    img_url = "https://i.ytimg.com/vi/ncDQruu4BbI/maxresdefault.jpg"
+    response = requests.get(img_url)
+    img_data = response.content
+    img = ImageTk.PhotoImage(Image.open(BytesIO(img_data)))
+    thumbnail_label = Label(frame2, image=img, height=300, width=300)
+    thumbnail_label.pack()
+
+    # Download videos names
     downloaded_video_label = Label(frame2, text=youtube.title)
     downloaded_video_label.pack()
 
