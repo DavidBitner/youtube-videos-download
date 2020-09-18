@@ -41,7 +41,7 @@ def download():
     youtube = pytube.YouTube(video_url)
     video = youtube.streams.get_highest_resolution()
     directory = directory_label.cget("text")
-    # video.download(directory)
+    video.download(directory)
     status_label = Label(frame, text=f"FINISHED: {youtube.title}")
     status_label.grid(row=3, column=0, columnspan=2, pady=5, padx=10)
 
@@ -49,7 +49,6 @@ def download():
     img_url = youtube.thumbnail_url
     response = requests.get(img_url)
     img_data = response.content
-    # img = ImageTk.PhotoImage(Image.open(BytesIO(img_data)))
     img = Image.open(BytesIO(img_data))
     img = img.resize((300, 200), Image.ANTIALIAS)
     img = ImageTk.PhotoImage(img)
